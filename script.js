@@ -6,6 +6,13 @@ form.onsubmit = (e) => {
     statusTxt.style.display = 'block';
 
    
-    let formData = new FormData(form); //creating new FormData obj. This obj is used to send form data
-    xhr.send(formData);//sending form data to server
+    let xhr = new XMLHttpsRequest();
+    xhr.open("POST", "message.php", true);
+    xhr.onload = () => {
+        if(xhr.readyState == 4 && xhr.status ==200) {
+            let response = xhr.response;
+            console.log(response);
+        }
+    }
+    xhr.send();
 }
